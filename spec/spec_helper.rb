@@ -1,7 +1,34 @@
 require 'serverspec'
 require 'net/ssh'
+require 'rspec/mocks/standalone'
+require 'rspec/its'
+require 'specinfra'
+require 'specinfra/helper/set'
+include Specinfra::Helper::Set
 
 set :backend, :ssh
+#Maybe don't need to set as linux
+set :os, :family => 'linux'
+
+#In the extended-types tutorial
+module Specinfra
+  module Backend
+    class Ssh
+      def run_command(cmd, opts={})
+        CommandResult.new :stdout => nil, :exit_status => 0
+      end
+    end
+  end
+end
+
+module GetCommand
+  def get_command(method, *args)
+    Specinfra.command.get(method, *args)
+  end
+end
+
+include GetCommand
+
 
 if ENV['ASK_SUDO_PASSWORD']
   begin
@@ -32,3 +59,6 @@ set :ssh_options, options
 
 # Set PATH
 # set :path, '/sbin:/usr/local/sbin:$PATH'
+
+#In the extended-types tutorial
+require 'serverspec-custom-types'
