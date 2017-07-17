@@ -17,22 +17,22 @@ You now have access to this gem and its resources.
 If you want to add a new resource, I recommend following these steps
 
 
-### add your resource to lib/serverspec-custom-types
+#### add your resource to lib/serverspec-custom-types
 You need to add a file to lib/serverspec-custom-types that follows the format name_of_resource.rb. Inside that file, you will write your custom class. Basically, this is where you will need to call runner to access a remote host and add the structure for your resource type.
 
 
-### add your resource to lib/serverspec-custom-types.rb
+#### add your resource to lib/serverspec-custom-types.rb
 In this file, make sure you include your resource.
 
 
-### add tests for your resource 
+#### add tests for your resource 
 In spec/types, you can write name_of_resource_spec.rb and write some tests. This is also where you write the output a user sees when a test is run.
 
 
-### test your code
+#### test your code
 You can use `rake -T` to see what tests you can run. Then run your tests to make sure they work.
 
 
-### build the gem
+#### build the gem
 Once you are confident in your new resource type, you can update the version of the gem in lib/serverspec-custom-types/version.rb. Then build the gem with `gem build serverspec-custom-types.gemspec`.
 
